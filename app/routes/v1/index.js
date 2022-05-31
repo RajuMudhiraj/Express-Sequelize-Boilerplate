@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const { passport } = require('../../config/passport.config');
+const { verify_admin } = require('../../middlewares/verify_admin')
+
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "Welcome to Express and sequelize project Version 1" })
@@ -14,13 +17,13 @@ router.get('/public-route', async (req, res) => {
 })
 
 // protected route
-router.get('/protected-route', async (req, res) => {
+router.get('/protected-route', passport.authenticate('jwt', { session: false }), async (req, res) => {
     return res.status(200).json({ success: true, message: `You have accessed the protected route` })
 })
 
 
 // Users with admin role can only accessible route
-router.get('/admin-route', async (req, res) => {
+router.get('/admin-route', passport.authenticate('jwt', { session: false }), verify_admin, async (req, res) => {
     return res.status(200).json({ success: true, message: `You have accessed the admin role can only accessible route` })
 })
 

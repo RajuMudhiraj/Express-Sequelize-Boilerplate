@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const env = process.env.NODE_ENV || "development";
 const config = require('./db.config')[env];
 
-exports.sequelize = new Sequelize(config.database, config.username, config.password, {
+const sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: config.dialect,
     operatorsAliases: 0,
@@ -20,14 +20,16 @@ exports.sequelize = new Sequelize(config.database, config.username, config.passw
     },
 });
 
-// (async () => {
-//     try {
-//         await sequelize.sync({ alter: true });
-//         await sequelize.authenticate();
-//         console.log('Connection has been established successfully.');
-//     } catch (error) {
-//         console.error('Unable to connect to the database:', error);
-//     }
-// })();
+module.exports = { sequelize };
+
+(async () => {
+    try {
+        // await sequelize.sync();
+        await sequelize.authenticate();
+        console.log('Successfully connected to Databbase!');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+})();
 
 

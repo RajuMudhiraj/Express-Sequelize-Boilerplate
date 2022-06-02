@@ -12,6 +12,8 @@ User.init({
     },
     name: {
         type: DataTypes.STRING,
+        required: true,
+        defaultValue: "User"
     },
     email: {
         type: DataTypes.STRING,
@@ -26,7 +28,8 @@ User.init({
         allowNull: false
     },
     roles: {
-        type: DataTypes.ARRAY(DataTypes.STRING)
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: ["user"]
     }
 
 },

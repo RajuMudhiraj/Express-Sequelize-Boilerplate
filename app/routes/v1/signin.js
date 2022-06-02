@@ -59,6 +59,6 @@ const controls = require('../../controllers/v1/signin')
 
 
 // Post method of '/api-v1/signin' route
-router.post('/', controls.signinController)
+router.post('/', controls.signin_controller)
 
 module.exports = router;

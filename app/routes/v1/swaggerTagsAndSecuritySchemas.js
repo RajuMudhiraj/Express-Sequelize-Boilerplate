@@ -1,4 +1,3 @@
-
 // Authentication component
 /**
  * @swagger
@@ -9,4 +8,3 @@
  *       scheme: bearer
  *       bearerFormal: JWT
  */
-

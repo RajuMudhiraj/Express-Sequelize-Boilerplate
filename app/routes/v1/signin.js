@@ -1,8 +1,5 @@
-const router = require('express').Router()
-const controls = require('../../controllers/v1/signin')
-
-
-
+const router = require('express').Router();
+const controls = require('../../controllers/v1/signin');
 
 // Swagger schema for post method of '/api-v1/signup'.
 /**
@@ -25,7 +22,6 @@ const controls = require('../../controllers/v1/signin')
  *         password: password
  */
 
-
 /**
  * @swagger
  * /api-v1/signin:
@@ -47,7 +43,7 @@ const controls = require('../../controllers/v1/signin')
  *               success: true
  *               message: You have signed in successfully!
  *               name: John Doe
- *               token: Bearer ad146e4r654a65df46d54f6ad4f6e45f645ad6f56d4ff6d46a4d6d45f
+ *               accessToken: Bearer ad146e4r654a65df46d54f6ad4f6e45f645ad6f56d4ff6d46a4d6d45f
  *       500:
  *         description: Error message.
  *         content:
@@ -57,8 +53,7 @@ const controls = require('../../controllers/v1/signin')
  *               message: Error message
 */
 
-
 // Post method of '/api-v1/signin' route
-router.post('/', controls.signin_controller)
+router.post('/', controls.signinController);
 
 module.exports = router;

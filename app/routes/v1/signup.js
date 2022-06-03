@@ -1,7 +1,5 @@
-const router = require('express').Router()
-const controls = require('../../controllers/v1/signup')
-
-
+const router = require('express').Router();
+const controls = require('../../controllers/v1/signup');
 
 // Swagger schema for post method of '/api-v1/signup'.
 /**
@@ -27,7 +25,6 @@ const controls = require('../../controllers/v1/signup')
  *         password: password
  */
 
-
 /**
  * @swagger
  * /api-v1/signup:
@@ -48,7 +45,7 @@ const controls = require('../../controllers/v1/signup')
  *             example:
  *               success: true
  *               message: User created successfully!
- *               user: 
+ *               user:
  *                 id: adfa4f65fd-fa45d4f54d-adf54df5
  *                 name: John Doe
  *                 email: johndoe@mailinator.com
@@ -63,6 +60,6 @@ const controls = require('../../controllers/v1/signup')
 */
 
 // Post method of '/api-v1/signup' route
-router.post('/', controls.signup_controller)
+router.post('/', controls.signupController);
 
 module.exports = router;

@@ -1,7 +1,6 @@
-const router = require('express').Router()
-const controls = require('../../controllers/v1/refresh_token')
-
-
+/* eslint-disable max-len */
+const router = require('express').Router();
+const controls = require('../../controllers/v1/refreshToken');
 
 // Swagger schema for post method of '/api-v1/refresh-token'.
 /**
@@ -11,15 +10,14 @@ const controls = require('../../controllers/v1/refresh_token')
  *     refresh-token:
  *       type: object
  *       required:
- *         - refresh_token
+ *         - refreshToken
  *       properties:
- *         refresh_token:
+ *         refreshToken:
  *           type: string
  *
  *       example:
- *         refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
+ *         refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
  */
-
 
 /**
  * @swagger
@@ -41,7 +39,7 @@ const controls = require('../../controllers/v1/refresh_token')
  *             example:
  *               success: true
  *               message: Access token created successfully!
- *               access_token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
+ *               accessToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
  *       500:
  *         description: Error message.
  *         content:
@@ -51,7 +49,7 @@ const controls = require('../../controllers/v1/refresh_token')
  *               message: Error message
 */
 
-// Post method of '/api-v1/refresh_token' route
-router.post('/', controls.refresh_token_controller)
+// Post method of '/api-v1/refresh-token' route
+router.post('/', controls.refreshTokenController);
 
 module.exports = router;

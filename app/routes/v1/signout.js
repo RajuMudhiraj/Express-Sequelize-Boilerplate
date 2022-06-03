@@ -1,11 +1,7 @@
+/* eslint-disable max-len */
 const router = require('express').Router();
 const controls = require('../../controllers/v1/signout');
 const { passport } = require('../../config/passport.config');
-
-
-
-
-
 
 // Swagger schema for post method of '/api-v1/signout'.
 /**
@@ -15,15 +11,14 @@ const { passport } = require('../../config/passport.config');
  *     signout:
  *       type: object
  *       required:
- *         - refresh_token
+ *         - refreshToken
  *       properties:
- *         refresh_token:
+ *         refreshToken:
  *           type: string
- * 
+ *
  *       example:
- *         refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
+ *         refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
  */
-
 
 /**
  * @swagger
@@ -56,8 +51,7 @@ const { passport } = require('../../config/passport.config');
  *               message: Error message
 */
 
-
 // Post method of '/api-v1/signout' route
-router.post('/', passport.authenticate('jwt', { session: false }), controls.signout_controller)
+router.post('/', passport.authenticate('jwt', { session: false }), controls.signoutController);
 
 module.exports = router;

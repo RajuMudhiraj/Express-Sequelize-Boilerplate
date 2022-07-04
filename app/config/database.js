@@ -22,12 +22,25 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 module.exports = { sequelize };
 
+// Checking the connection to database
 (async () => {
   try {
-    // await sequelize.sync({ alter: true });
     await sequelize.authenticate();
-    console.log('Successfully connected to Databbase!');
+    console.log('Successfully connected to Database!');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.log('Unable to connect to the database:', error);
   }
 })();
+
+// Synchronising the whole database
+// (async () => {
+//   try {
+//     const option = {};
+//     await sequelize.sync(option);
+
+//     const stringifiedOption = JSON.stringify(option);
+//     console.log(`Successfully synchronised the database with ${stringifiedOption}`);
+//   } catch (error) {
+//     console.log('Unable to synchronise the database:', error);
+//   }
+// })();

@@ -4,14 +4,14 @@ const express = require('express');
 
 const app = express();
 
-const httpError = require('http-errors');
+const HttpError = require('http-errors');
 
 const cors = require('cors');
 
 app.use(cors());
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 // Swagger UI setup
 const swaggerUI = require('swagger-ui-express');
@@ -41,7 +41,7 @@ app.use('/', require('./app/routes/index'));
 
 // Creating an error and passing through next() if requested router not found
 app.use((req, res, next) => {
-  const error = new httpError(404, 'Could not find this route.');
+  const error = new HttpError(404, 'Could not find this route.');
   next(error);
 });
 
@@ -51,10 +51,10 @@ app.use((error, req, res) => res.status(error.status || 500).json({
 }));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, (err, res) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.log(`${err}`);
   } else {
-    console.log(`Server is listening at port ${PORT}`);
+    console.log(`Server is listening at port ${PORT}.....`);
   }
 });

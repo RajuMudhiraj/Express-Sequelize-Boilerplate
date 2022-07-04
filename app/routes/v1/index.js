@@ -18,6 +18,6 @@ router.get('/public-route', async (req, res) => res.status(200).json({ success: 
 router.get('/protected-route', passport.authenticate('jwt', { session: false }), async (req, res) => res.status(200).json({ success: true, message: 'You have accessed the protected route' }));
 
 // Users with admin role can only accessible route
-router.get('/admin-route', passport.authenticate('jwt', { session: false }), roleVerify(['admin']), async (req, res) => res.status(200).json({ success: true, message: 'You have accessed the admin role can only accessible route' }));
+router.get('/admin-route', passport.authenticate('jwt', { session: false }), roleVerify('admin'), async (req, res) => res.status(200).json({ success: true, message: 'You have accessed the admin role can only accessible route' }));
 
 module.exports = router;

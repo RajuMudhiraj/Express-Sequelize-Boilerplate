@@ -1,6 +1,7 @@
-exports.roleVerify = (rolesArray) => (req, res, next) => {
+// eslint-disable-next-line consistent-return
+exports.roleVerify = (role) => (req, res, next) => {
   try {
-    if (req.user.roles.includes(rolesArray)) {
+    if (req.user.roles.includes(role)) {
       next();
     } else {
       return res.status(403).json({ success: false, message: 'You are not authorized' });

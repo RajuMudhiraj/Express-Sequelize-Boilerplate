@@ -1,3 +1,4 @@
+// eslint-disable-next-line consistent-return
 exports.verifyAdmin = (req, res, next) => {
   try {
     if (req.user.roles.includes('admin')) {

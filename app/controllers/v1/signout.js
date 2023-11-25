@@ -1,5 +1,4 @@
 const { UserToken } = require('../../models/UserToken');
-const { refreshTokenBodyValidation } = require('../../helpers/validationSchema');
 
 exports.signoutController = async (req, res) => {
   console.log('test', req.user);
@@ -8,12 +7,6 @@ exports.signoutController = async (req, res) => {
   const { id } = req.user;
 
   try {
-    const { error } = refreshTokenBodyValidation(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false, message: error.details,
-      });
-    }
 
     const userToken = await UserToken.findOne({
       where: { token: refreshToken, userId: id },

@@ -4,7 +4,9 @@ exports.roleVerify = (role) => (req, res, next) => {
     if (req.user.roles.includes(role)) {
       next();
     } else {
-      return res.status(403).json({ success: false, message: 'You are not authorized' });
+      return res
+        .status(403)
+        .json({ success: false, message: 'You are not authorized' });
     }
   } catch (err) {
     return res.status(500).json({

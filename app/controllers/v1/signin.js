@@ -1,18 +1,10 @@
 const { compare } = require('bcrypt');
 const { User } = require('../../models/User');
-const { loginBodyValidation } = require('../../helpers/validationSchema');
 const { generateTokens } = require('../../helpers/generateTokens');
 
 exports.signinController = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const { error } = loginBodyValidation(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details,
-      });
-    }
 
     // Checking the existence of email.
     const emailExistence = await User.findOne({ where: { email } });

@@ -1,16 +1,13 @@
 const { Sequelize } = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
-const config = require('./db.config')[env];
+const config = require('./config')[env];
 
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
-  dialect: config.dialect,
+  dialect: 'postgres',
   operatorsAliases: 0,
   logging: false,
-  define: {
-    freezeTableName: true,
-  },
 
   pool: {
     max: 5,

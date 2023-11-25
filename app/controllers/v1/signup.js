@@ -1,17 +1,9 @@
 const { hashSync } = require('bcrypt');
 const { User } = require('../../models/User');
-const { signUpBodyValidation } = require('../../helpers/validationSchema');
 
 exports.signupController = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const { error } = signUpBodyValidation(req.body);
-    if (error) {
-      return res.status(400).json({
-        success: false,
-        message: error.details,
-      });
-    }
 
     const userExistence = await User.findOne({ where: { email } });
     if (!userExistence) {

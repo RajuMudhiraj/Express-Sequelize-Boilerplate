@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 const router = require('express').Router();
 const controls = require('../../controllers/v1/signout');
-const { passport } = require('../../config/passport.config');
 
 // Swagger schema for post method of '/api-v1/signout'.
 /**
@@ -49,9 +48,9 @@ const { passport } = require('../../config/passport.config');
  *             example:
  *               success: false
  *               message: Error message
-*/
+ */
 
 // Post method of '/api-v1/signout' route
-router.post('/', passport.authenticate('jwt', { session: false }), controls.signoutController);
+router.post('/', controls.signoutController);
 
 module.exports = router;

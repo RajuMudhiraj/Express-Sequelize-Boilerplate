@@ -4,6 +4,9 @@ const express = require('express');
 
 const app = express();
 
+const env = process.env.NODE_ENV;
+const config = require('./app/config/config')[env];
+
 const HttpError = require('http-errors');
 
 const cors = require('cors');
@@ -12,6 +15,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+const PORT = config.PORT;
 
 // Swagger UI setup
 const swaggerUI = require('swagger-ui-express');
@@ -27,7 +32,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5000/',
+        url: `http://localhost:${PORT}/`,
       },
     ],
   },
@@ -46,11 +51,12 @@ app.use((req, res, next) => {
 });
 
 // Sending error message to client
-app.use((error, req, res) => res.status(error.status || 500).json({
-  message: error.message,
-}));
+app.use((error, req, res) =>
+  res.status(error.status || 500).json({
+    message: error.message,
+  })
+);
 
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, (err) => {
   if (err) {
     console.log(`${err}`);

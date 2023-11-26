@@ -3,21 +3,28 @@ const { Sequelize } = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config')[env];
 
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: 'postgres',
-  operatorsAliases: 0,
-  logging: false,
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    dialect: config.dialect,
+    ssl: config.ssl,
+    dialectOptions: config.dialectOptions,
+    operatorsAliases: 0,
+    logging: false,
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   },
-});
+);
 
-module.exports = { sequelize };
+module.exports = { sequelize, Sequelize };
 
 // Checking the connection to database
 (async () => {
@@ -28,16 +35,3 @@ module.exports = { sequelize };
     console.log('Unable to connect to the database:', error);
   }
 })();
-
-// Synchronising the whole database
-// (async () => {
-//   try {
-//     const option = {};
-//     await sequelize.sync(option);
-
-//     const stringifiedOption = JSON.stringify(option);
-//     console.log(`Successfully synchronised the database with ${stringifiedOption}`);
-//   } catch (error) {
-//     console.log('Unable to synchronise the database:', error);
-//   }
-// })();

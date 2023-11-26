@@ -1,25 +1,21 @@
-const { UserToken } = require('../../models/UserToken');
+const models = require('../../models/index');
 
 exports.signoutController = async (req, res) => {
-  console.log('test', req.user);
-
-  const { refreshToken } = req.body;
   const { id } = req.user;
 
   try {
-
-    const userToken = await UserToken.findOne({
-      where: { token: refreshToken, userId: id },
+    const isExists = await models.RefreshToken.findOne({
+      where: { userId: id },
     });
 
-    if (!userToken) {
+    if (!isExists) {
       return res.status(200).json({
         success: true,
         message: 'Signed out successfully!',
       });
     }
 
-    await userToken.destroy();
+    await isExists.destroy();
     return res.status(200).json({
       success: true,
       message: 'Signed out successfully!',

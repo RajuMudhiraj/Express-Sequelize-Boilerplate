@@ -2,23 +2,6 @@
 const router = require('express').Router();
 const controls = require('../../controllers/v1/signout');
 
-// Swagger schema for post method of '/api-v1/signout'.
-/**
- * @swagger
- * components:
- *   schemas:
- *     signout:
- *       type: object
- *       required:
- *         - refreshToken
- *       properties:
- *         refreshToken:
- *           type: string
- *
- *       example:
- *         refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
- */
-
 /**
  * @swagger
  * /api-v1/signout:
@@ -27,12 +10,6 @@ const controls = require('../../controllers/v1/signout');
  *     tags: [User]
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/signout'
  *     responses:
  *       200:
  *         description: The response of user created.

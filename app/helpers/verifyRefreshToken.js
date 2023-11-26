@@ -1,19 +1,24 @@
 /* eslint-disable prefer-promise-reject-errors */
 /* eslint-disable no-promise-executor-return */
 const jwt = require('jsonwebtoken');
-const { UserToken } = require('../models/UserToken');
+const models = require('../models/index');
 
-exports.verifyRefreshToken = (refreshToken) => {
-  const secretKey = process.env.REFRESH_TOKEN_SECRET_KEY;
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config')[env];
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      const doc = await UserToken.findOne({ where: { token: refreshToken } });
-      if (!doc) {
-        return reject({ success: false, message: 'Invalid refresh token' });
-      }
+exports.verifyRefreshToken = (refreshToken) => new Promise(async (resolve, reject) => {
+  try {
+    const isExists = await models.RefreshToken.findOne({
+      where: { refreshToken },
+    });
+    if (!isExists) {
+      return reject({ success: false, message: 'Invalid refresh token' });
+    }
 
-      jwt.verify(refreshToken, secretKey, (err, tokenDetails) => {
+    jwt.verify(
+      refreshToken,
+      config.REFRESH_TOKEN_SECRET_KEY,
+      (err, tokenDetails) => {
         if (err) {
           return reject({ success: false, message: 'Invalid refresh token' });
         }
@@ -22,12 +27,10 @@ exports.verifyRefreshToken = (refreshToken) => {
           success: true,
           message: 'Valid refresh token',
           tokenDetails,
-          createdAt: doc.createdAt,
-
         });
-      });
-    } catch (error) {
-      return reject({ success: false, message: error.message });
-    }
-  });
-};
+      },
+    );
+  } catch (error) {
+    return reject({ success: false, message: error.message });
+  }
+});

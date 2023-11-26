@@ -1,29 +1,6 @@
 const router = require('express').Router();
 const controls = require('../../controllers/v1/signup');
-
-// Swagger schema for post method of '/api-v1/signup'.
-/**
- * @swagger
- * components:
- *   schemas:
- *     signup:
- *       type: object
- *       required:
- *         - email
- *         - password
- *       properties:
- *         name:
- *           type: string
- *         email:
- *           type: string
- *         password:
- *           type: string
- *
- *       example:
- *         name: John Doe
- *         email: johndoe@mailinator.com
- *         password: password
- */
+const upload = require('../../helpers/multer');
 
 /**
  * @swagger
@@ -34,9 +11,23 @@ const controls = require('../../controllers/v1/signup');
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
- *             $ref: '#/components/schemas/signup'
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - email
+ *               - password
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *                 format: password
  *     responses:
  *       201:
  *         description: The response of user created.
@@ -57,9 +48,9 @@ const controls = require('../../controllers/v1/signup');
  *             example:
  *               success: false
  *               message: Error message
-*/
+ */
 
 // Post method of '/api-v1/signup' route
-router.post('/', controls.signupController);
+router.post('/', upload.none(), controls.signupController);
 
 module.exports = router;

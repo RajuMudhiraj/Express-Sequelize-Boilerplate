@@ -7,7 +7,7 @@ module.exports = {
     host: 'localhost',
     dialect: 'postgres',
     ssl: false,
-    ssl_dialect_options: {},
+    dialectOptions: {},
 
     PORT: 3001,
 
@@ -23,7 +23,7 @@ module.exports = {
     host: 'localhost',
     dialect: 'postgres',
     ssl: false,
-    ssl_dialect_options: {},
+    dialectOptions: {},
 
     PORT: 3001,
 
@@ -39,7 +39,7 @@ module.exports = {
     host: 'localhost',
     dialect: 'postgres',
     ssl: false,
-    ssl_dialect_options: {},
+    dialectOptions: {},
 
     PORT: 3001,
 

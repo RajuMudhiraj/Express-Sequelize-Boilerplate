@@ -1,8 +1,18 @@
-const { sequelize } = require('../config/database');
+const { sequelize, Sequelize } = require('../config/database');
 
-const { User } = require('./User');
+const { DataTypes } = Sequelize;
 
+const User = require('./user')(sequelize, DataTypes);
+const RefreshToken = require('./refreshtoken')(sequelize, DataTypes);
+const Role = require('./role')(sequelize, DataTypes);
+const UserRole = require('./userrole')(sequelize, DataTypes);
+
+User.belongsToMany(Role, { through: UserRole });
+Role.belongsToMany(User, { through: UserRole });
 
 module.exports = {
-    User,
-}
+  User,
+  RefreshToken,
+  Role,
+  UserRole,
+};

@@ -2,23 +2,6 @@
 const router = require('express').Router();
 const controls = require('../../controllers/v1/refreshToken');
 
-// Swagger schema for post method of '/api-v1/refresh-token'.
-/**
- * @swagger
- * components:
- *   schemas:
- *     refresh-token:
- *       type: object
- *       required:
- *         - refreshToken
- *       properties:
- *         refreshToken:
- *           type: string
- *
- *       example:
- *         refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1ZmY4NDRhLWU0YTQtNDRjNi1hY2M3LWE4MmIwYWNkNTcyMiIsInJvbGVzIjpbInVzZXIiXSwiaWF0IjoxNjU0MTU2MjQyLCJleHAiOjE2NTY3NDgyNDJ9.OAkoaSgBKh1XcQ5ZcEItiCEtBNzvNWLQqnRDrOoYNNY
- */
-
 /**
  * @swagger
  * /api-v1/refresh-token:
@@ -30,7 +13,12 @@ const controls = require('../../controllers/v1/refreshToken');
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/refresh-token'
+ *             type: object
+ *             required:
+ *               - refreshToken
+ *             properties:
+ *               refreshToken:
+ *                 type: string
  *     responses:
  *       200:
  *         description: The response of access token created.
@@ -47,7 +35,7 @@ const controls = require('../../controllers/v1/refreshToken');
  *             example:
  *               success: false
  *               message: Error message
-*/
+ */
 
 // Post method of '/api-v1/refresh-token' route
 router.post('/', controls.refreshTokenController);

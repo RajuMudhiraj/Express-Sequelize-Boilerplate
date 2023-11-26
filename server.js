@@ -5,7 +5,6 @@ const express = require('express');
 const app = express();
 
 const env = process.env.NODE_ENV;
-const config = require('./app/config/config')[env];
 
 const HttpError = require('http-errors');
 
@@ -16,11 +15,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = config.PORT;
+// require('./app/models/index')
 
 // Swagger UI setup
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const config = require('./app/config/config')[env];
+
+const { PORT } = config;
 
 const options = {
   definition: {
@@ -29,6 +31,9 @@ const options = {
       title: 'Model project',
       version: '1.0.0',
       description: 'Api documentation',
+      contact: {
+        email: 'yoursupportemail@email.com',
+      },
     },
     servers: [
       {

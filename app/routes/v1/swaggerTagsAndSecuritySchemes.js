@@ -6,5 +6,5 @@
  *     bearerAuth:
  *       type: http
  *       scheme: bearer
- *       bearerFormal: JWT
+ *       bearerFormat: JWT
  */

@@ -1,17 +1,30 @@
 const { hashSync } = require('bcrypt');
-const { User } = require('../../models/User');
+const { Op } = require('sequelize');
+const models = require('../../models/index');
 
 exports.signupController = async (req, res) => {
-  const { name, email, password } = req.body;
+  const {
+    firstName, lastName, email, password,
+  } = req.body;
   try {
-
-    const userExistence = await User.findOne({ where: { email } });
+    const userExistence = await models.User.findOne({ where: { email } });
     if (!userExistence) {
-      const user = await User.create({
-        name,
+      const user = await models.User.create({
+        firstName,
+        lastName,
         email,
-        password: hashSync(password, 10),
+        password,
       });
+
+      // Creating User Role (if not exist) and assigning to newly signedup user
+      let userRole = await models.Role.findOne({ where: { role: 'User' } });
+
+      if (!userRole) {
+        userRole = await models.Role.create({ role: 'User' });
+      }
+
+      await user.setRoles([userRole]);
+
       return res.status(201).json({
         success: true,
         message: 'User created successfully!',

@@ -8,8 +8,11 @@ const env = process.env.NODE_ENV;
 
 const HttpError = require('http-errors');
 
+const morgan = require('morgan');
+
 const cors = require('cors');
 
+app.use(morgan('tiny'));
 app.use(cors());
 
 app.use(express.json());
@@ -20,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 // Swagger UI setup
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+
 const config = require('./app/config/config')[env];
 
 const { PORT } = config;

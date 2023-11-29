@@ -17,7 +17,7 @@ exports.signinController = async (req, res) => {
         },
       ],
     });
-    emailExistence = emailExistence.toJSON();
+    emailExistence = emailExistence?.toJSON();
     emailExistence?.Roles.map(
       (obj, index) => (emailExistence.Roles[index] = obj.role)
     );

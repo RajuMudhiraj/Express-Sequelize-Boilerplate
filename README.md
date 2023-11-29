@@ -4,7 +4,21 @@
 - add .env file in root directory
 - paste the follwoing text in .env file: \
 ``NODE_ENV=development``
-- Navigate to cloned folder path in terminal (or in integrated terminal of code editor) and run the following command:\
+- If postgresql database is not installed, download and install the postgresql database in your loacal machine\
+[Link to download postgresql from official site](https://www.postgresql.org/download/)
+- Navigate to cloned path in integrated terminal of your code editor (or in terminal) and run the following command:\
 ``npm install``
-- download and install the postgres database in your loacal machine\
-[Link to download postgres from official site](https://www.postgresql.org/download/)
+- If nodemon is not installed, download it with the following command:
+``npm install nodemon -g``
+- Run the following command to let the sequelize-cli create the database for you\
+``npx sequelize-cli db:create``
+- Run the db migration with the following command:\
+``npx sequelize-cli db:migrate``
+- Run the following command to start the server:\
+``npm run dev``
+- Copy and paste the following url in any web browser to access your express server\
+``http://localhost:3001/``
+
+### Now you can access your express server 
+
+

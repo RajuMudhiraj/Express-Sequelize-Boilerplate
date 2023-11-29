@@ -19,6 +19,6 @@
 - Copy and paste the following url in any web browser to access your express server\
 ``http://localhost:3001/``
 
-### Happy coding U+1F642
+### Happy coding &U+1F642;
 
 
